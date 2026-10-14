@@ -1,0 +1,127 @@
+/* =============================================================================
+   SKIN SENILCARE (ESEMPIO) — palette blu, stile "SenilWatch"
+   -----------------------------------------------------------------------------
+   QUESTO È UNO SKIN DI ESEMPIO. Serve a mostrare COME SI COMPILA uno skin sopra
+   lo skin-default: si parte dalla stessa identica struttura di token e si
+   cambiano solo i valori che danno identità al brand (qui: il colore primario
+   blu e il focus ring, più un accento azzurrino per gli hover).
+
+   ISPIRAZIONE: la palette blu su base ardesia (slate) del prodotto SenilWatch,
+   usato nel Metodo come metro estetico per il web (dark theme pulito, clinico,
+   ad alta densità). NON è uno skin da imporre: è un campione. La palette vera di
+   un progetto si CO-PROGETTA con l'utente nella fase di styling (vedi SKILL.md
+   e 17-design-web.md).
+
+   COME SI USA: identico allo skin-default — copiare il blocco :root/.dark dentro
+   `index.css`. Mantiene lo STESSO set di token dello skin-default (così è
+   intercambiabile): cambia solo i valori, mai i nomi.
+
+   IDENTITÀ DI QUESTO SKIN:
+   - `--primary`  = blu (blue-500): marchio e CTA. Resta blu sia in light sia in
+                    dark (è un colore di brand, non un neutro che inverte).
+   - `--ring`     = blu coerente col primary (focus ring riconoscibile).
+   - `--accent`   = azzurro tenue per gli sfondi hover.
+   - base superfici = ardesia (slate), dark = slate-900 (lo stile SenilWatch).
+   - brand mark suggerito: icona Lucide `HeartPulse` o `Activity` in container
+     `bg-primary` (esempio coerente con un dominio di monitoraggio).
+   ============================================================================= */
+
+/* Stesso caricamento font dello skin-default: Inter + JetBrains Mono. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@layer base {
+  :root {
+    /* --- Superfici e inchiostro (light) --- */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* --- Marchio / CTA: BLU (identità di questo skin) --- */
+    --primary: 217 91% 60%;            /* blue-500 */
+    --primary-foreground: 0 0% 100%;
+
+    /* --- Superfici sottili / secondarie --- */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 38%;   /* testo secondario leggibile (WCAG AA) */
+    --accent: 214 95% 93%;             /* azzurro tenue per hover */
+    --accent-foreground: 217 91% 30%;  /* blu scuro su accento azzurro */
+
+    /* --- Severità (status/severity coding) --- */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 71% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 45%;
+    --warning-foreground: 38 92% 8%;
+    --info: 199 89% 42%;
+    --info-foreground: 0 0% 100%;
+
+    /* --- Bordi, campi, focus ring --- */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;               /* focus ring blu, coerente col brand */
+
+    /* --- Raggio e caratteri --- */
+    --radius: 0.5rem;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  .dark {
+    /* --- Superfici e inchiostro (dark "clinico" SenilWatch) --- */
+    --background: 222 47% 11%;          /* slate-900 */
+    --foreground: 210 40% 98%;
+    --card: 222 45% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 45% 14%;
+    --popover-foreground: 210 40% 98%;
+
+    /* --- Marchio / CTA: BLU (resta blu anche in dark) --- */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    /* --- Superfici sottili / secondarie --- */
+    --secondary: 217 33% 20%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 20%;
+    --muted-foreground: 215 20% 70%;
+    --accent: 217 50% 22%;             /* blu scuro tenue per hover */
+    --accent-foreground: 210 40% 98%;
+
+    /* --- Severità (toni adattati al fondo scuro) --- */
+    --destructive: 0 63% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 64% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 52%;
+    --warning-foreground: 38 92% 8%;
+    --info: 199 89% 52%;
+    --info-foreground: 222 47% 11%;
+
+    /* --- Bordi, campi, focus ring --- */
+    --border: 217 33% 24%;
+    --input: 217 33% 24%;
+    --ring: 217 91% 60%;
+  }
+}
+
+/* Applicazione di base (identica allo skin-default). */
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}

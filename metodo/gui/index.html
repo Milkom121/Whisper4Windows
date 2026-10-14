@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metodo Villa — la schermata del runner</title>
+<link rel="stylesheet" href="stile.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div>
+      <div class="mark">Metodo Villa · runner</div>
+      <div class="proj" id="nome-progetto">…</div>
+    </div>
+    <span class="branch" id="ramo"></span>
+    <span class="spacer"></span>
+    <button class="ghost" id="tema" type="button">Tema</button>
+  </div>
+
+  <div class="moments" role="tablist" aria-label="Momenti della schermata">
+    <button class="moment" id="t-prima" role="tab" aria-selected="true" aria-controls="p-prima" type="button">1 · Prima di lanciare</button>
+    <button class="moment" id="t-durante" role="tab" aria-selected="false" aria-controls="p-durante" type="button">2 · Mentre lavora</button>
+  </div>
+
+  <div class="avviso" id="avviso" hidden></div>
+
+  <!-- ================= MOMENTO 1 — prima di lanciare ================= -->
+  <div id="p-prima" role="tabpanel" aria-labelledby="t-prima">
+    <div class="cols">
+
+      <div class="stack">
+        <section class="card" aria-label="A che punto siamo">
+          <h2>A che punto siamo</h2>
+          <div class="facts">
+            <div class="fact"><div class="k">Si riparte da</div><div class="v" id="riparte">…</div></div>
+            <div class="fact"><div class="k">Roadmap</div><div class="v" id="conta-roadmap">…</div></div>
+            <div class="fact"><div class="k" id="nome-fase">Fase</div><div class="v" id="conta-fase">…</div></div>
+          </div>
+          <div class="thisrun">
+            <span class="t">Questa corsa</span>
+            <span class="n" id="corsa-n">…</span>
+            <span class="w" id="corsa-perche"></span>
+          </div>
+        </section>
+
+        <section class="card" aria-label="Come faccio girare il lavoro">
+          <h2>Come faccio girare il lavoro</h2>
+
+          <div class="field">
+            <span class="lab">Chi lavora</span>
+            <div class="row">
+              <div class="seg" role="group" aria-label="Programma" id="seg-agente">
+                <button type="button" data-valore="claude" aria-pressed="true">Claude Code</button>
+                <button type="button" data-valore="opencode" aria-pressed="false">OpenCode</button>
+              </div>
+              <select aria-label="Modello" id="sel-modello" hidden></select>
+            </div>
+            <span class="hint" id="hint-modello">Claude Code lavora col suo modello predefinito.</span>
+          </div>
+
+          <div class="field">
+            <span class="lab">Quanto si impegna</span>
+            <div class="seg" role="group" aria-label="Impegno" id="seg-impegno">
+              <button type="button" data-valore="low" aria-pressed="false">Basso</button>
+              <button type="button" data-valore="medium" aria-pressed="false">Medio</button>
+              <button type="button" data-valore="high" aria-pressed="true">Alto</button>
+              <button type="button" data-valore="max" aria-pressed="false">Massimo</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="lab">Fin dove arriva</span>
+            <div class="seg" role="group" aria-label="Modalita" id="seg-modalita">
+              <button type="button" data-valore="fase" aria-pressed="true">Si ferma a fine fase</button>
+              <button type="button" data-valore="tutte" aria-pressed="false">Tutte le fasi di fila</button>
+            </div>
+          </div>
+
+          <div class="field" id="campo-ottimizza">
+            <span class="lab">Un motore per ogni blocco</span>
+            <div class="seg" role="group" aria-label="Instradamento" id="seg-ottimizza">
+              <button type="button" data-valore="no" aria-pressed="true">Spento</button>
+              <button type="button" data-valore="si" aria-pressed="false">Acceso</button>
+            </div>
+            <span class="hint" id="hint-ottimizza">Acceso: cruciale → Opus 5 · importante → Kimi K3 ·
+              ordinario → GLM 5.3. I blocchi senza peso restano al modello scelto qui sopra.</span>
+          </div>
+
+          <div class="field">
+            <span class="lab">Limiti di sicurezza</span>
+            <div class="row">
+              <label class="hint">Tetto blocchi <input type="number" id="in-tetto" min="1" max="1000" value="300"></label>
+              <label class="hint">Minuti per blocco <input type="number" id="in-timeout" min="1" max="600" value="30"></label>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="stack">
+        <section class="card" aria-label="Quanta benzina c'e'">
+          <h2>Quanta benzina c'è</h2>
+          <div class="fuel" id="benzina">
+            <div class="attesa">Sto chiedendo ai fornitori…</div>
+          </div>
+        </section>
+
+        <section class="card" aria-label="Lancio">
+          <button class="go" id="lancia" type="button">Lancia la corsa</button>
+          <div class="note" id="nota-lancio">Il lavoro gira per conto suo: puoi chiudere questa
+            finestra e riaprirla quando vuoi, la corsa non si ferma.</div>
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= MOMENTO 2 — mentre lavora ================= -->
+  <div id="p-durante" role="tabpanel" aria-labelledby="t-durante" hidden>
+    <div class="cols">
+
+      <div class="stack">
+        <section class="card" aria-label="Adesso">
+          <h2>Adesso</h2>
+          <div id="adesso" aria-live="polite"><div class="attesa">Sto guardando cosa sta girando…</div></div>
+        </section>
+
+        <section class="card" aria-label="Quanto sta consumando">
+          <h2>Quanto sta consumando</h2>
+          <div class="fuel" id="consumo-corsa"></div>
+          <div class="hint sep">Quanta ne resta adesso</div>
+          <div class="fuel" id="benzina-durante"></div>
+          <button class="stopbtn" id="ferma" type="button" hidden>Ferma dopo questo blocco</button>
+          <div class="note" id="nota-ferma" hidden></div>
+        </section>
+      </div>
+
+      <section class="card" aria-label="Blocchi finiti">
+        <h2 id="titolo-cronologia">Blocchi finiti</h2>
+        <div class="hist" id="cronologia"></div>
+        <div class="note">Chiuso, ogni blocco dice in una riga cosa è cambiato. Aperto, mostra
+          con quale motore è stato fatto, quanto è costato e com'è andata la verifica.</div>
+      </section>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="racconto.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+# Spostamenti del Metodo — come i progetti nati prima si riallineano da soli.
+#
+# A COSA SERVE
+#   Il manifest dice DOVE stanno i file del Metodo adesso, e lo scarico li copia
+#   la'. Ma un progetto nato prima di un riordino conserva anche le COPIE VECCHIE
+#   nei posti vecchi: senza questo file resterebbero doppioni per sempre, perche'
+#   lo scarico copia e non cancella mai nulla di sua iniziativa.
+#   Qui si dichiara, una volta, "questo era li' e ora sta qua". Lo scarico lo
+#   applica e il progetto si trova riordinato senza interventi a mano.
+#
+# FORMATO
+#   tipo | percorso vecchio | percorso nuovo
+#
+#   tipo = metodo       -> file di PROPRIETA' della madre. Il nuovo arriva con lo
+#                          scarico, quindi il vecchio si RIMUOVE. Nessuna perdita:
+#                          il contenuto e' della madre, identico per tutti.
+#   tipo = impalcatura  -> file il cui CONTENUTO e' del progetto, ma il cui
+#                          PERCORSO lo decide il Metodo (il runner li cerca a
+#                          percorso fisso). Si SPOSTANO, non si cancellano MAI.
+#                          Se esistono sia il vecchio sia il nuovo, non si
+#                          indovina: si segnala a Villa e si lascia tutto fermo.
+#
+#   Percorso nuovo "-"  -> il file non esiste piu' in nessuna forma (solo per
+#                          tipo "metodo"; per "impalcatura" e' vietato).
+#
+# REGOLE
+#   - Applicare piu' volte lo stesso spostamento non fa danni (e' idempotente).
+#   - Le path escluse da .metodo-sync-ignore vengono saltate anche qui.
+#   - Ogni azione viene stampata in chiaro: niente magie silenziose.
+
+# ═══════════════════════════════════════════════════════════════════════════
+# Riordino della radice — 2026-08-07
+#   La macchina del Metodo si raccoglie in metodo/; in radice resta solo il
+#   progetto piu' runner.bat. I documenti si dividono in fondamenta/ e diario/.
+# ═══════════════════════════════════════════════════════════════════════════
+
+# --- La macchina si raccoglie in metodo/ ---
+metodo | metodo-villa-runner.sh | metodo/metodo-villa-runner.sh
+metodo | tooling/metodo-sync.sh | metodo/metodo-sync.sh
+metodo | tooling/metodo-manifest.txt | metodo/metodo-manifest.txt
+metodo | .env.runner.example | metodo/.env.runner.example
+
+# --- Gli 8 avviatori diventano un unico runner.bat con menu ---
+#     (erano due comandi riscritti quattro volte: due modalita' x .bat/.ps1)
+metodo | avvia-runner-fino-a-fine-fase.bat | runner.bat
+metodo | avvia-runner-fino-a-fine-fase.ps1 | runner.bat
+metodo | avvia-runner-tutte-le-fasi.bat | runner.bat
+metodo | avvia-runner-tutte-le-fasi.ps1 | runner.bat
+metodo | aggiorna-metodo.bat | runner.bat
+metodo | aggiorna-metodo.ps1 | runner.bat
+metodo | rimanda-al-metodo.bat | runner.bat
+metodo | rimanda-al-metodo.ps1 | runner.bat
+
+# --- L'impalcatura di lavoro passa in docs/diario/ ---
+#     Contenuto del progetto, percorso deciso dal Metodo (il runner li cerca la').
+impalcatura | docs/handoff.md | docs/diario/handoff.md
+impalcatura | docs/progress.json | docs/diario/progress.json
+impalcatura | docs/dev-shortcuts.md | docs/diario/dev-shortcuts.md
+impalcatura | docs/decisioni-da-rivedere.md | docs/diario/decisioni-da-rivedere.md
+impalcatura | docs/session-log.md | docs/diario/session-log.md
+impalcatura | docs/runner-log.txt | docs/diario/runner-log.txt
+impalcatura | .claude/decisions.md | docs/diario/decisions.md
+impalcatura | .claude/ideas.md | docs/diario/ideas.md

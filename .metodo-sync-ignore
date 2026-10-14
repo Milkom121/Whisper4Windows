@@ -1,0 +1,4 @@
+# Il progetto e' pubblico: non importare la mappa dei progetti privati.
+.claude/precedenti
+# Convenzioni Git unite a quelle del progetto; mantenere questa personalizzazione.
+.gitattributes

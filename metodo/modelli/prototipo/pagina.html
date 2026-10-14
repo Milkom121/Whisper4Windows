@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prototipo — [nome della regola]</title>
+<!--
+  MODELLO DI PROTOTIPO CLICCABILE (cap. 20, competenza `prototipo-cliccabile`).
+
+  Si apre col doppio clic: niente da installare, niente da avviare. L'impaginazione
+  e' gia' qui: chi costruisce un prototipo cambia SOLO due cose —
+    1. le regole, in `regole.js` (che non sa niente di questa pagina);
+    2. l'elenco dei gesti e degli scenari, in fondo a questo file, dentro CONFIGURAZIONE.
+
+  Perche' la logica sta fuori: quando la risposta arriva, quel file si solleva e va nel
+  codice vero. La pagina intorno si butta.
+-->
+<style>
+  :root {
+    --fondo: #f7f7f8; --carta: #fff; --testo: #1a1a1f; --tenue: #6b6b76;
+    --filo: #e3e3e8; --segno: #2f5fd0; --caldo: #b8541a; --ok: #1f7a4d;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fondo: #16161a; --carta: #1f1f25; --testo: #ececf1; --tenue: #a0a0ad;
+      --filo: #2e2e37; --segno: #7aa2f7; --caldo: #e0955c; --ok: #6cc79a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px; background: var(--fondo); color: var(--testo);
+         font: 16px/1.5 system-ui, -apple-system, Segoe UI, sans-serif; }
+  main { max-width: 940px; margin: 0 auto; display: grid; gap: 20px;
+         grid-template-columns: 1fr 1fr; align-items: start; }
+  header { max-width: 940px; margin: 0 auto 20px; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .sotto { color: var(--tenue); font-size: 14px; }
+  section { background: var(--carta); border: 1px solid var(--filo);
+            border-radius: 10px; padding: 16px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em;
+       color: var(--tenue); margin: 0 0 12px; }
+  button { font: inherit; padding: 9px 14px; margin: 0 8px 8px 0; cursor: pointer;
+           background: var(--carta); color: var(--testo);
+           border: 1px solid var(--filo); border-radius: 8px; }
+  button:hover { border-color: var(--segno); }
+  button.scenario { border-color: var(--caldo); }
+  #stato { font-family: ui-monospace, Consolas, monospace; font-size: 13px;
+           white-space: pre-wrap; margin: 0; }
+  #diario { list-style: none; padding: 0; margin: 0; font-size: 14px; }
+  #diario li { padding: 6px 0; border-bottom: 1px solid var(--filo); }
+  #diario li:last-child { border-bottom: 0; }
+  .esito-si { color: var(--ok); } .esito-no { color: var(--caldo); }
+  @media (max-width: 760px) { main { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1 id="titolo">Prototipo</h1>
+  <p class="sotto">Serve a rispondere a <b id="domanda">una domanda sola</b>. Non e' il prodotto: e' un foglio su cui provare la regola.</p>
+</header>
+
+<main>
+  <section>
+    <h2>Cosa puoi fare</h2>
+    <div id="gesti"></div>
+    <h2 style="margin-top:18px">Scenari scomodi</h2>
+    <div id="scenari"></div>
+  </section>
+
+  <section>
+    <h2>Come sta adesso</h2>
+    <pre id="stato"></pre>
+  </section>
+
+  <section style="grid-column: 1 / -1">
+    <h2>Cosa e' successo</h2>
+    <ul id="diario"></ul>
+  </section>
+</main>
+
+<script src="regole.js"></script>
+<script>
+/* ---------------------------------------------------------------------------
+   CONFIGURAZIONE — l'unica parte di questo file che si tocca.
+   I nomi dei bottoni si scrivono nella LINGUA DEL MESTIERE, mai in quella del
+   codice: e' la persona che decide che deve riconoscerli.
+--------------------------------------------------------------------------- */
+const CONFIGURAZIONE = {
+  titolo: "Prototipo — [nome della regola]",
+  domanda: "[la domanda a cui questo prototipo risponde]",
+  gesti: [
+    // { etichetta: "Chiudi la pratica", azione: (s) => Regole.chiudi(s) },
+  ],
+  scenari: [
+    // { etichetta: "Due documenti che si contraddicono", passi: [
+    //     { etichetta: "carica il primo", azione: (s) => Regole.carica(s) },
+    //     { etichetta: "prova a chiudere", azione: (s) => Regole.chiudi(s) },
+    // ] },
+  ],
+};
+
+/* --------------------------- il motorino, non si tocca -------------------- */
+let stato = Regole.statoIniziale();
+const $ = (id) => document.getElementById(id);
+
+function disegna() {
+  document.title = CONFIGURAZIONE.titolo;
+  $("titolo").textContent = CONFIGURAZIONE.titolo;
+  $("domanda").textContent = CONFIGURAZIONE.domanda;
+  $("stato").textContent = JSON.stringify(stato, null, 2);
+}
+
+function annota(testo, esito) {
+  const li = document.createElement("li");
+  li.textContent = testo;
+  if (esito === true)  li.className = "esito-si";
+  if (esito === false) li.className = "esito-no";
+  $("diario").prepend(li);
+}
+
+function esegui(etichetta, azione) {
+  const esito = azione(stato);
+  if (esito && typeof esito === "object" && "stato" in esito) {
+    stato = esito.stato;
+    annota(etichetta + " → " + (esito.dice || "fatto"), esito.permesso);
+  } else {
+    stato = esito;
+    annota(etichetta);
+  }
+  disegna();
+}
+
+CONFIGURAZIONE.gesti.forEach((g) => {
+  const b = document.createElement("button");
+  b.textContent = g.etichetta;
+  b.onclick = () => esegui(g.etichetta, g.azione);
+  $("gesti").append(b);
+});
+
+CONFIGURAZIONE.scenari.forEach((s) => {
+  const b = document.createElement("button");
+  b.textContent = "▶ " + s.etichetta;
+  b.className = "scenario";
+  b.onclick = () => {
+    annota("— scenario: " + s.etichetta + " —");
+    s.passi.forEach((p, i) => {
+      // Un passo puo' essere la sola azione, oppure { etichetta, azione }: col nome, il
+      // diario si legge senza tornare al codice.
+      if (typeof p === "function") esegui("passo " + (i + 1), p);
+      else esegui(p.etichetta, p.azione);
+    });
+  };
+  $("scenari").append(b);
+});
+
+disegna();
+</script>
+</body>
+</html>

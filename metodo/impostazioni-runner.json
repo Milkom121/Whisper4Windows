@@ -1,0 +1,34 @@
+{
+  "_commento": "Impostazioni che valgono SOLO nelle corse del Metodo. Il runner le passa a Claude Code con --settings, che AGGIUNGE: il .claude/settings.json del progetto non viene toccato. Tre ganci: il filtro dell'output dei test (metodo/filtro-test.py), il richiamo delle competenze quando si tocca l'interfaccia (metodo/gancio-competenze.py) e l'indirizzario dei precedenti quando nasce un file che somiglia a una cosa gia' risolta altrove (metodo/cerca-precedenti.py). Vedi .claude/metodo-villa/23-risparmio-token.md, 25-ganci-del-metodo.md e 28-indirizzario-precedenti.md. Nei monorepo $CLAUDE_PROJECT_DIR e' il modulo: se il Metodo sta solo in radice, i ganci non scattano e tutto funziona come sempre (nessun danno, nessun aiuto).",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/metodo/filtro-test.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/metodo/gancio-competenze.py\""
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/metodo/cerca-precedenti.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

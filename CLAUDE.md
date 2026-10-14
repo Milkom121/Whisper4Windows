@@ -1,73 +1,45 @@
-# Whisper4Windows — Istruzioni per Claude Code
+@.claude/metodo-villa/00-CLAUDE-OPERATIVO.md
 
-## Progetto
-Whisper4Windows e' un'app desktop per trascrizione vocale locale basata su OpenAI Whisper.
-- **Frontend**: Tauri 2 (Rust) + WebView (HTML/JS compilato in `frontend/dist/`)
-- **Backend**: Python FastAPI + Uvicorn, eseguito come sidecar (`whisper-backend.exe` via PyInstaller)
-- **Motore**: faster-whisper (ctranslate2) per la trascrizione
-- **Comunicazione**: HTTP REST su `127.0.0.1:8000`
+--- REGOLE SPECIFICHE PROGETTO ---
 
-## Architettura
-```
-Tauri App (Rust, lib.rs)
-  ├── WebView principale (frontend/dist/index.html) — impostazioni
-  ├── WebView recording (frontend/dist/recording.html) — UI registrazione
-  ├── Tray Icon — menu contestuale
-  └── whisper-backend.exe (processo figlio Python)
-       └── FastAPI Server (:8000)
-            ├── AudioCapture (sounddevice) — registrazione audio
-            ├── WhisperEngine (faster-whisper) — trascrizione
-            └── GPUManager — rilevamento GPU
-```
+# Whisper4Windows
 
-## File principali
-- `frontend/src-tauri/src/lib.rs` — logica Rust, gestione processo backend, comandi Tauri
-- `frontend/src-tauri/src/main.rs` — entry point (chiama `lib.rs`)
-- `backend/main.py` — server FastAPI, endpoint REST
-- `backend/audio_capture.py` — cattura audio con sounddevice
-- `backend/whisper_engine.py` — caricamento modelli e trascrizione
-- `backend/gpu_manager.py` — rilevamento GPU NVIDIA
-- `frontend/dist/index.html` — UI impostazioni (HTML/JS compilato)
-- `frontend/dist/recording.html` — UI registrazione (HTML/JS compilato)
+App desktop Windows per trascrizione locale. Obiettivo della prossima evoluzione:
+aggiungere lettura vocale italiana e adattamento automatico a NVIDIA, AMD e CPU.
+Queste nuove funzioni sono in definizione, non implementate.
 
-## Protocollo di lavoro a sessioni
+- Frontend esistente: Tauri 2, Rust e HTML/JavaScript in `frontend/dist/`.
+- Backend: Python, FastAPI e Uvicorn su `127.0.0.1:8000`, distribuito come
+  sidecar PyInstaller `whisper-backend.exe`.
+- Trascrizione attuale: faster-whisper / CTranslate2, CUDA NVIDIA o CPU.
+- File chiave: `frontend/src-tauri/src/lib.rs`, `backend/main.py`,
+  `backend/whisper_engine.py`, `backend/gpu_manager.py`, `backend/audio_capture.py`.
 
-Ogni sessione di lavoro DEVE seguire questo protocollo:
+## Vincoli
 
-### 1. Identificazione
-All'inizio della sessione, leggere `ROADMAP.md` per capire quale blocco sviluppare.
+- Conservare dettatura, scorciatoie, appunti, impostazioni e recupero del backend.
+- Elaborazione vocale locale; servizi cloud richiedono una scelta esplicita.
+- Linguaggi, nomi di funzioni e commenti del codice restano in inglese, come nel
+  progetto originario; comunicazione e documentazione di lavoro in italiano.
+- Non sostituire lo stack con React, Flutter o altri framework solo per
+  applicare gli esempi visivi del Metodo.
+- Dipendenze e prove isolate nel progetto. Non modificare driver, PATH o runtime
+  di sistema durante adozione o prove senza mandato pertinente.
+- Per eseguire l'app avviare il frontend con il suo sidecar. Non avviare anche un
+  secondo backend sulla porta 8000; il backend separato serve al debug dedicato.
+- L'importazione del Metodo non avvia runner, notifiche, confronti di modelli
+  o nuove funzioni. Il loro avvio segue il relativo mandato.
 
-### 2. Sviluppo
-Implementare tutti i task del blocco corrente. Lavorare in modo incrementale.
+## Lavoro e verifiche
 
-### 3. Test
-Verificare che le modifiche funzionino:
-- Controllo sintassi Python: `python -c "import py_compile; py_compile.compile('file.py', doraise=True)"`
-- Controllo compilazione Rust: `cd frontend/src-tauri && cargo check`
-- Test funzionale se possibile
+Seguire il blocco della roadmap su un ramo dedicato (`codex/` come prefisso
+predefinito, salvo indicazione del blocco). Niente merge o push su `main` senza
+autorizzazione. Preservare le modifiche locali estranee al blocco.
 
-### 4. Sintesi
-Alla fine della sessione, fornire all'utente:
-- Riassunto chiaro e comprensibile di cosa e' stato fatto
-- Eventuali problemi riscontrati
-- Stato della roadmap (cosa resta da fare)
+Comandi e precondizioni sono in `PROJECT_CONFIG.md`. Per modifiche Python
+controllare la sintassi; per modifiche Rust usare `cargo check`; aggiungere la
+verifica funzionale pertinente. Nell'adozione del Metodo verificare anche che
+il codice applicativo sia invariato. Non presentare come superate prove non eseguite.
 
-### 5. Prompt per la sessione successiva
-Scrivere un prompt pronto all'uso per avviare la sessione successiva, nel formato:
-
-```
-Whisper4Windows — ROADMAP Blocco N — [descrizione del task]
-
-[Contesto e istruzioni specifiche per il blocco]
-```
-
-### 6. Chiusura sessione
-Se i test hanno esito positivo:
-- Aggiornare i checkbox del blocco completato in `ROADMAP.md` (da `[ ]` a `[x]`)
-- Eseguire il commit delle modifiche
-
-## Regole generali
-- Non modificare file che non servono al blocco corrente
-- Ogni blocco va su un branch separato (indicato nella roadmap)
-- Scrivere in italiano quando si comunica con l'utente
-- I commenti nel codice restano in inglese
+La roadmap precedente, gia' segnata completata, e' conservata in
+`docs/storico/ROADMAP-backend-robusto.md`: non certifica nuovi collaudi odierni.

@@ -1,0 +1,138 @@
+/* =============================================================================
+   SKIN DEFAULT — palette neutra "slate"
+   -----------------------------------------------------------------------------
+   Skin di partenza, NEUTRO, per qualsiasi progetto web del Metodo Villa.
+   È il punto zero: una palette grigio-ardesia (slate) sobria e professionale,
+   pensata per essere PERSONALIZZATA nella fase di styling co-progettata con
+   l'utente (vedi SKILL.md, fase di styling, e 17-design-web.md).
+
+   COME SI USA: copiare il blocco :root/.dark dentro il file `index.css` del
+   progetto (sotto le direttive @tailwind base/components/utilities). La config
+   Tailwind referenzia questi token: colors: { primary: 'hsl(var(--primary))', ... }.
+
+   PERCHÉ TOKEN E NON COLORI A MANO: ogni colore vive come variabile semantica
+   (un nome che dice la FUNZIONE, non il valore). Si cambia in un posto solo e
+   si propaga ovunque. È il principio 1 del 16-design-core.md.
+
+   FORMATO COLORE: HSL senza la funzione hsl() — Tailwind/shadcn avvolgono il
+   valore con hsl(var(--token)). Es. `--primary: 222 47% 11%`.
+
+   NOMENCLATURA (allineata a shadcn/ui):
+   - `--primary`     = colore del MARCHIO e delle CHIAMATE ALL'AZIONE (CTA).
+                       Qui è un ardesia scuro neutro: VA PERSONALIZZATO col
+                       colore del brand del progetto nella fase di styling.
+   - `--accent`      = superficie tenue per hover/sfondi sottili (NON è il
+                       colore d'accento del brand: quello è `--primary`).
+   - `--destructive` = severità "pericolo/errore" (rosso).
+   - `--success/--warning/--info` = le altre severità (verde/ambra/cyan),
+                       estensione Villa al set shadcn per il severity coding
+                       (vedi 16-design-core.md, principio 3).
+
+   USO DELLE SEVERITÀ: per i contenitori di stato NON riempire di colore pieno
+   saturo (correzione dal vivo SenilWatch). Usare lo sfondo tenue + bordo:
+   in Tailwind `bg-success/10 border border-success/30 text-success`. Il colore
+   pieno si riserva al bottone d'azione o a un singolo avviso urgente.
+   ============================================================================= */
+
+/* Font del prodotto: Inter (testo + titoli) e JetBrains Mono (dati tabellari).
+   MAI font di sistema. Caricamento via Google Fonts; in alternativa self-hosted. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@layer base {
+  :root {
+    /* --- Superfici e inchiostro (light) --- */
+    --background: 0 0% 100%;            /* sfondo pagina */
+    --foreground: 222 47% 11%;          /* testo principale (slate-900) */
+    --card: 0 0% 100%;                  /* superficie card */
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;              /* superficie popover/menu */
+    --popover-foreground: 222 47% 11%;
+
+    /* --- Marchio / CTA (PERSONALIZZARE per progetto) --- */
+    --primary: 222 47% 11%;            /* ardesia scuro neutro */
+    --primary-foreground: 210 40% 98%; /* testo su primary */
+
+    /* --- Superfici sottili / secondarie --- */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;              /* sfondo attenuato */
+    --muted-foreground: 215 16% 38%;   /* testo secondario LEGGIBILE (WCAG AA) */
+    --accent: 210 40% 96%;            /* hover/sfondo tenue (non è il brand) */
+    --accent-foreground: 222 47% 11%;
+
+    /* --- Severità (status/severity coding) --- */
+    --destructive: 0 72% 51%;          /* pericolo/errore (rosso non eccessivo) */
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 71% 36%;            /* ok/online (verde) */
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 45%;             /* attenzione (ambra) */
+    --warning-foreground: 38 92% 8%;   /* testo scuro su ambra chiara */
+    --info: 199 89% 42%;               /* informazione neutra (cyan) */
+    --info-foreground: 0 0% 100%;
+
+    /* --- Bordi, campi, focus ring --- */
+    --border: 214 32% 91%;             /* bordo hairline */
+    --input: 214 32% 91%;
+    --ring: 222 47% 11%;               /* anello di focus visibile */
+
+    /* --- Raggio di smusso e caratteri --- */
+    --radius: 0.5rem;                  /* rounded-lg di base */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  .dark {
+    /* --- Superfici e inchiostro (dark) --- */
+    --background: 222 47% 7%;           /* sfondo scuro (slate-950-ish) */
+    --foreground: 210 40% 98%;
+    --card: 222 45% 10%;               /* card leggermente più chiara dello sfondo */
+    --card-foreground: 210 40% 98%;
+    --popover: 222 45% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    /* --- Marchio / CTA (PERSONALIZZARE per progetto) --- */
+    --primary: 210 40% 98%;            /* in dark il neutro inverte: chiaro */
+    --primary-foreground: 222 47% 11%;
+
+    /* --- Superfici sottili / secondarie --- */
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 70%;   /* testo secondario LEGGIBILE su scuro */
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    /* --- Severità (toni adattati al fondo scuro) --- */
+    --destructive: 0 63% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 64% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 52%;
+    --warning-foreground: 38 92% 8%;
+    --info: 199 89% 52%;
+    --info-foreground: 222 47% 11%;
+
+    /* --- Bordi, campi, focus ring --- */
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 213 27% 84%;
+  }
+}
+
+/* Applicazione di base: sfondo, testo e carattere del prodotto.
+   (Se nel progetto questa parte è già in index.css, non duplicarla.) */
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Cifre a larghezza fissa per i dati che si confrontano in colonna. */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}

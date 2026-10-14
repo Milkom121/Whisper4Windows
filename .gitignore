@@ -37,6 +37,26 @@ frontend/node_modules/
 *~
 .claude/
 
+# Versioned Metodo Villa resources; local settings and private inventories stay local.
+!.claude/
+.claude/*
+!.claude/metodo-villa/
+!.claude/metodo-villa/**
+!.claude/skills/
+!.claude/skills/**
+!.claude/handoff-template.md
+!.claude/settings.json
+.claude/settings.local.json
+.claude/precedenti/
+.claude/plugins/
+.env.runner
+.env.runner.*
+!metodo/.env.runner.example
+docs/diario/runner-log.txt
+docs/diario/session-log.md
+docs/diario/progress.json
+**/__pycache__/
+
 # OS
 .DS_Store
 Thumb   s.db

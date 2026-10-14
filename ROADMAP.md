@@ -1,92 +1,60 @@
-# Whisper4Windows — Roadmap: Backend Robusto e Auto-Recuperante
+# Whisper4Windows — Roadmap
 
-## Obiettivo
-Rendere il backend Python (FastAPI/Uvicorn) solido, resistente ai crash e capace di auto-recuperarsi senza intervento manuale dell'utente.
+Obiettivo: un'app locale che trascrive e legge in italiano, adattandosi alle
+risorse NVIDIA, AMD o CPU. Metodo di sviluppo: Metodo Villa ufficiale.
 
-## Stato attuale del problema
-Il backend a volte va offline per crash del processo Python (OOM, errori CUDA, eccezioni non gestite). Quando succede, l'utente deve manualmente riavviarlo dalle impostazioni. Non esiste nessun meccanismo di auto-recovery.
+`[x]` completato, `[>]` in corso, `[ ]` da fare.
+Natura: 🤖 autonomo, 👤 umano, 🤝 collaborativo. Peso: 🟢 ordinario,
+🟡 importante, 🔴 cruciale. Un blocco ha una modifica coerente e una verifica.
 
----
+## Fase 0 — Adozione del Metodo Villa
 
-## Blocco 1: Coda audio limitata e fix exception handling
-**File:** `backend/audio_capture.py`, `backend/main.py`
-**Branch:** `fix/bounded-audio-queue`
+### Blocco 0.1 — Importazione e collegamento al progetto 🤖 🟡
 
-### Task
-- [x] Aggiungere `maxsize=9600` alla `queue.Queue()` in `audio_capture.py` (~10 min di audio)
-- [x] Modificare `_audio_callback` per gestire coda piena (buffer circolare: drop chunk piu' vecchio)
-- [x] Fix bare `except:` in `main.py` (righe 108, 352) → `except Exception:`
-- [x] Fix bare `except:` in `audio_capture.py` se presenti
-- [x] Aggiungere campo `last_audio_level` aggiornato dal callback per evitare il peek/re-insert nella coda (`/audio_level`)
+- [x] **F0B1** — Importare il Metodo ufficiale e preservare il progetto esistente. Completato il 2026-10-14.
+  - **Mandato**: richiesta esplicita di Mario del 2026-10-14.
+  - **Branch**: `codex/adozione-metodo-villa`.
+  - **Risultato**: manuale, skill, runner e aggiornamento presenti; istruzioni
+    per Claude e Codex collegate; configurazione e consegne specifiche compilate;
+    vecchi documenti preservati nello storico.
+  - **Verifica unica**: controllo d'integrazione dell'adozione — file importati
+    identici alla fonte salvo eccezioni dichiarate, esclusione dell'indirizzario
+    privato, lettura di roadmap e stato dagli strumenti, collegamenti operativi
+    validi e codice applicativo invariato. I controlli Python/Rust sono riscontri
+    aggiuntivi sullo stato iniziale del progetto.
+  - **Fuori scope**: nuovi motori vocali, interfaccia, dipendenze, driver,
+    avvio del runner e fusione su main.
+  - **Esito**: 125 file ufficiali identici, storico e codice preservati;
+    lettura della prossima fase corretta, nessun blocco autonomo oltre il
+    confronto con Mario. Sintassi Python, shell e controllo Rust positivi.
 
-### Verifica
-- Il backend si avvia normalmente
-- La registrazione e trascrizione funzionano
-- La coda non cresce oltre il limite (verificare nei log)
-- L'endpoint `/audio_level` funziona senza toccare la coda principale
+## Fase 1 — Definizione della nuova versione
 
----
+### Blocco 1.1 — Decidere l'uso della lettura vocale 🤝 🟡
 
-## Blocco 2: Unload modello e check VRAM
-**File:** `backend/whisper_engine.py`, `backend/main.py`
-**Branch:** `fix/model-memory-management`
+- [ ] **F1B1** — Definire con Mario il primo percorso di lettura del testo.
+  - **Ingresso**: `docs/fondamenta/obiettivi-e-fattibilita.md`; ricerca gia'
+    svolta, da non ripetere senza nuove esigenze.
+  - **Risultato**: requisiti condivisi su origine del testo, voce italiana,
+    controlli di ascolto, testi lunghi e comportamento durante la dettatura.
+  - **Verifica unica**: revisione con Mario di un caso concreto completo,
+    con esiti osservabili e decisioni registrate.
+  - **Primo passo**: una domanda sull'uso principale della lettura; non chiedere
+    a Mario scelte di librerie, runtime o dettagli tecnici delegati all'agente.
+  - **Sequencing**: confronto prima dei blocchi autonomi. Il runner non deve
+    oltrepassarlo o interpretare ipotesi tecniche come scelte approvate.
 
-### Task
-- [x] Aggiungere metodo `unload_model()` in `WhisperEngine` (del model, gc.collect)
-- [x] Chiamare `unload_model()` quando si cambia modello o device in `/start`
-- [x] Rimuovere il check `if self.is_loaded: return True` quando model_size/device diversi
-- [x] Aggiungere metodo `_check_vram_available()` che verifica VRAM prima del caricamento CUDA
-- [x] Se VRAM insufficiente, fallback automatico a CPU con warning nel log
+## Percorso successivo da dettagliare
 
-### Verifica
-- Cambio modello nelle impostazioni libera la memoria del precedente (verificare nei log)
-- Modello grande su GPU piccola non crasha ma usa CPU
-- Trascrizione funziona dopo cambio modello
+1. Prove isolate delle voci italiane sulla RTX 4080 Laptop, misurando ascolto,
+   attesa iniziale, velocita' e memoria. Qwen3-TTS e' un candidato, non una
+   scelta definitiva gia' collaudata.
+2. Prove di trascrizione e sintesi sul Minisforum MS-S1 MAX, verificando Windows
+   e driver reali. Definire il profilo AMD in base ai risultati.
+3. Progettare motori, memoria e percorsi dell'interfaccia; scomporre poi
+   l'implementazione in blocchi autonomi con verifiche concrete.
+4. Integrare lettura e scelta automatica dell'hardware, poi collaudare
+   installazione, uso senza rete e recupero dagli errori sulle due macchine.
 
----
-
-## Blocco 3: Exception handler globale, lock stato, timeout trascrizione
-**File:** `backend/main.py`
-**Branch:** `fix/backend-resilience`
-
-### Task
-- [x] Aggiungere `@app.exception_handler(Exception)` globale che logga e ritorna 500
-- [x] Aggiungere `asyncio.Lock()` per serializzare `/start`, `/stop`, `/cancel`
-- [x] Wrappare trascrizione in `asyncio.wait_for()` con timeout 300s
-- [x] Gestire `asyncio.TimeoutError` con messaggio appropriato
-
-### Verifica
-- Eccezioni non gestite non crashano il processo (ritornano 500)
-- Chiamate concorrenti start/stop non corrompono lo stato
-- Trascrizioni che durano troppo vengono interrotte con errore
-
----
-
-## Blocco 4: Auto-restart watchdog lato Rust
-**File:** `frontend/src-tauri/src/lib.rs`
-**Branch:** `feat/backend-auto-restart`
-
-### Task
-- [x] Aggiungere `is_shutting_down: Arc<Mutex<bool>>` all'`AppState`
-- [x] Creare funzione `spawn_backend_with_watchdog()` che:
-  - Spawna il sidecar
-  - Ascolta `_rx` per eventi `CommandEvent::Terminated`
-  - Se non e' shutdown intenzionale, rilancia dopo 2s
-  - Limita restart a max 5 in 60 secondi (anti-loop)
-  - Logga stdout/stderr del backend
-- [x] Usare questa funzione nello startup e in `restart_backend`
-- [x] Settare `is_shutting_down = true` nel handler "quit" prima di killare
-
-### Verifica
-- Killare manualmente il processo backend (`taskkill /F /IM whisper-backend.exe`)
-- Il watchdog lo rilancia automaticamente entro ~3 secondi
-- Il frontend mostra brevemente "offline" poi torna "online"
-- Dopo 5 crash rapidi consecutivi, il watchdog si ferma (anti-loop)
-- Chiudere l'app dal tray NON triggera il restart
-
----
-
-## Note
-- Ogni blocco va sviluppato in una sessione separata
-- Ogni sessione segue il protocollo definito in `CLAUDE.md`
-- I blocchi vanno sviluppati in ordine (1 → 2 → 3 → 4)
+Queste sono direzioni di pianificazione, non blocchi eseguibili approvati.
+Lo storico precedente e' in `docs/storico/ROADMAP-backend-robusto.md`.

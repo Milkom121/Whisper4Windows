@@ -1,0 +1,78 @@
+# Manifest del Metodo Villa — la "lista bianca" del sistema di sync a due sensi.
+# Disegno completo: docs/fondamenta/sistema-aggiornamento-metodo.md
+#
+# REGOLE DI FORMATO
+#   - Una voce per riga (percorso relativo alla radice del progetto).
+#   - Voce che finisce con "/"  -> CARTELLA: copiata ricorsivamente, con tutto il contenuto.
+#   - Voce senza "/"           -> FILE singolo.
+#   - " !div" a fine riga       -> file ad ALTO RISCHIO DI DIVERGENZA: nel "rimanda" serve
+#                                  una conferma rinforzata (il runner e il suo avviatore:
+#                                  se un progetto li adatta a se', la modifica non deve
+#                                  risalire alla madre senza che qualcuno la guardi).
+#   - Righe vuote o che iniziano con "#" -> ignorate.
+#
+# REGOLA D'ORO
+#   Qui va SOLO cio' che e' Metodo (condiviso, di proprieta' della madre).
+#   MAI file specifici di un progetto: codice, ROADMAP, PROJECT_CONFIG, regole-progetto,
+#   docs/ del progetto, diario/decisions.md, diario/ideas.md. Vedi la lista "NON Metodo".
+#
+# DOVE VIVE IL METODO (riordino del 2026-08-07)
+#   .claude/  -> quello che LEGGE l'agente: manuale e skill.
+#   metodo/   -> la MACCHINA: runner, strumento di sync, manifest, esempio di config.
+#   runner.bat nella radice -> l'unico avviatore che l'umano tocca a mano.
+#   Tutto il resto della radice e' del progetto e non si sincronizza mai.
+
+# --- Manuale operativo (include 00-CLAUDE-OPERATIVO.md) ---
+.claude/metodo-villa/
+
+# --- Skill (operative + bootstrap), con tutti i loro references/golden/theme ---
+.claude/skills/
+
+# --- Template di handoff (read-only nell'uso, ma aggiornabile dallo scarico) ---
+.claude/handoff-template.md
+
+# --- Indirizzario dei precedenti: un file per progetto, quindi due progetti non toccano
+#     mai lo stesso file e il rimando non genera conflitti (cap. 28) ---
+.claude/precedenti/
+
+# --- Gli avviatori che stanno in radice perche' sono le uniche cose del Metodo
+#     che l'umano apre col doppio clic (alto rischio di divergenza nei monorepo):
+#     runner.bat il menu dei comandi, schermata.bat la schermata del runner ---
+runner.bat !div
+schermata.bat !div
+
+# --- La macchina del Metodo (il runner ha alto rischio di divergenza nei monorepo) ---
+metodo/metodo-villa-runner.sh !div
+metodo/metodo-corsie.sh
+metodo/metodo-agente.sh
+metodo/metodo-roadmap.sh
+metodo/metodo-guardiano.sh
+metodo/metodo-occhio-esterno.sh
+metodo/metodo-sync.sh
+metodo/metodo-telegram.sh
+metodo/metodo-telegram.py
+metodo/trascrivi-vocale.py
+metodo/filtro-test.py
+metodo/con-servitore.sh
+metodo/gancio-competenze.py
+metodo/cerca-precedenti.py
+metodo/metodo-precedenti.sh
+metodo/metodo-profilo.sh
+metodo/cosa-serve.sh
+metodo/innesta-ganci.py
+metodo/metodo-modelli.sh
+metodo/leggi-conto.py
+metodo/leggi-benzina.py
+metodo/leggi-contesto.py
+metodo/servitore-gui.py
+metodo/gui/
+metodo/stato-progetto.sh
+metodo/impostazioni-runner.json
+metodo/metodo-manifest.txt
+metodo/metodo-spostamenti.txt
+metodo/.env.runner.example
+metodo/modelli/
+metodo/README.md
+
+# --- Convenzione fine-riga (coerenza CRLF/LF) ---
+.gitattributes

@@ -7,9 +7,11 @@ automaticamente NVIDIA, AMD o CPU. Macchine: RTX 4080 Laptop da 12 GB e Minisfor
 MS-S1 MAX con Ryzen AI Max+ 395 / Radeon 8060S. Memoria, Windows e driver del
 Minisforum sono da rilevare sulla macchina reale.
 
-Il mandato corrente autorizza l'adozione del Metodo. La ricerca in conversazione
-e' materiale di pianificazione; non e' la scelta definitiva di un motore ne'
-l'autorizzazione ad avviare il runner.
+Il mandato iniziale era l'adozione del Metodo. Il 2026-10-14 Mario lo ha esteso
+a raccolta informazioni, piano, implementazione, test ed eseguibile installabile.
+Discovery solo per decisioni strategiche; scelte tecniche delegate all'agente.
+La ricerca non e' la scelta definitiva di un motore. Stato in `discovery-state.md`;
+percorso in `docs/fondamenta/piano-operativo-voce-hardware.md`.
 
 ## Stato verificato nel codice
 

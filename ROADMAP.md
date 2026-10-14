@@ -32,15 +32,22 @@ Natura: 🤖 autonomo, 👤 umano, 🤝 collaborativo. Peso: 🟢 ordinario,
 
 ### Blocco 1.1 — Decidere l'uso della lettura vocale 🤝 🟡
 
-- [ ] **F1B1** — Definire con Mario il primo percorso di lettura del testo.
+- [>] **F1B1** — Definire con Mario la strategia della lettura vocale.
+  - **Mandato aggiornato**: ricerca, piano, implementazione, test e installer;
+    domande Discovery solo strategiche, dettagli tecnici delegati all'agente.
+  - **Branch**: `codex/discovery-voce-hardware`.
   - **Ingresso**: `docs/fondamenta/obiettivi-e-fattibilita.md`; ricerca gia'
     svolta, da non ripetere senza nuove esigenze.
-  - **Risultato**: requisiti condivisi su origine del testo, voce italiana,
-    controlli di ascolto, testi lunghi e comportamento durante la dettatura.
+  - **Risultato**: uso principale e priorita' qualitative condivisi; comandi,
+    origine del testo, testi lunghi e convivenza con dettatura progettati
+    dall'agente in coerenza con queste scelte.
   - **Verifica unica**: revisione con Mario di un caso concreto completo,
     con esiti osservabili e decisioni registrate.
-  - **Primo passo**: una domanda sull'uso principale della lettura; non chiedere
-    a Mario scelte di librerie, runtime o dettagli tecnici delegati all'agente.
+  - **Stato**: acquisizioni riunite, fonti principali ricontrollate, ambiente
+    NVIDIA rilevato; bozza in `docs/fondamenta/piano-operativo-voce-hardware.md`.
+    Nessun nuovo test vocale. Intervista e criteri condivisi ancora da completare.
+  - **Primo passo**: una domanda strategica sull'uso principale; non chiedere
+    librerie, runtime, comandi o altri dettagli tecnici delegati all'agente.
   - **Sequencing**: confronto prima dei blocchi autonomi. Il runner non deve
     oltrepassarlo o interpretare ipotesi tecniche come scelte approvate.
 
@@ -56,5 +63,7 @@ Natura: 🤖 autonomo, 👤 umano, 🤝 collaborativo. Peso: 🟢 ordinario,
 4. Integrare lettura e scelta automatica dell'hardware, poi collaudare
    installazione, uso senza rete e recupero dagli errori sulle due macchine.
 
-Queste sono direzioni di pianificazione, non blocchi eseguibili approvati.
+Il mandato di implementazione e consegna e' dato. Queste direzioni richiedono
+la scomposizione in blocchi verificabili dopo le risposte strategiche;
+non sono una sequenza gia' pronta per il runner.
 Lo storico precedente e' in `docs/storico/ROADMAP-backend-robusto.md`.

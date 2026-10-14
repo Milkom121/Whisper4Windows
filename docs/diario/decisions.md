@@ -14,3 +14,12 @@
 - Obiettivo confermato: lettura italiana e adattamento NVIDIA/AMD/CPU.
 - Da decidere: percorso d'uso iniziale e motore dopo prove reali. Qwen3-TTS,
   ROCm e separazione dei processi sono proposte tecniche da validare.
+
+## 2026-10-14 — Mandato fino all'installer
+
+- Mario richiede raccolta informazioni, piano operativo, implementazione, test
+  e consegna di un eseguibile installabile, non soltanto ricerca/proposta.
+- Discovery solo sulle scelte strategiche; dettagli tecnici e tattici delegati.
+- Raccolta iniziale e piano provvisorio salvati. Uso principale della voce
+  ancora senza risposta; nessun motore o clonazione approvati per supposizione.
+- Nessun consenso implicito a cloud, driver, release pubbliche o merge main.

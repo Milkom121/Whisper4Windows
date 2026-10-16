@@ -1,0 +1,154 @@
+{
+  "date": "2026-10-16",
+  "machine": "RTX 4080 Laptop, 12282 MiB, NVIDIA driver 595.97, Windows",
+  "conditions": "AC power; other applications left running; sequential TTS processes; unoptimized PyTorch; no streaming playback timing",
+  "engines": {
+    "qwen": {
+      "model_load_s": 78.00828370000818,
+      "reference_prepare_s": {
+        "female": 4.258561599999666,
+        "male": 0.1720297000138089
+      },
+      "generation_s": 786.8465045000776,
+      "audio_s_without_inserted_gaps": 160.16,
+      "weighted_rtf": 4.912877775350135,
+      "median_segment_rtf": 4.637695245241142,
+      "cuda_peak_allocated_mib": 4466.3720703125,
+      "cuda_peak_reserved_mib": 5184.0,
+      "rss_peak_mib": 4431.8046875,
+      "whole_gpu_peak_used_mib_including_other_apps": 11548,
+      "torch": "2.8.0+cu128",
+      "cuda": "12.8",
+      "samples": [
+        {
+          "file": "01_racconto_female.wav",
+          "audio_s": 19.55,
+          "generation_s": 94.45737079999526,
+          "sha256": "0ff01ae0181a31d1c17e4c4c3bf73f69b92aeb9513373921a3d4f1fd89583440"
+        },
+        {
+          "file": "02_dialogo_female.wav",
+          "audio_s": 18.67,
+          "generation_s": 83.93202730000485,
+          "sha256": "0addba423e84e91fdfe3a833f9363a474ead865b2a60d2d0645d0ae665e02385"
+        },
+        {
+          "file": "03_numeri_female.wav",
+          "audio_s": 23.07,
+          "generation_s": 112.52482489999966,
+          "sha256": "cb3fc333cec37c31cec29866fdc83054540f89d60386da884a5e147a9a04375c"
+        },
+        {
+          "file": "04_tecnico_female.wav",
+          "audio_s": 20.11,
+          "generation_s": 90.0333881000115,
+          "sha256": "19e1636e7175749f09da80ca7a2357f5dcbb62d3cb82616e004eb8377c1ada9c"
+        },
+        {
+          "file": "01_racconto_male.wav",
+          "audio_s": 18.99,
+          "generation_s": 113.46309800003655,
+          "sha256": "e32094bd04e9bcb22034a5c90be76c06af776b80d667b7b71bf7a1b0416d5d14"
+        },
+        {
+          "file": "02_dialogo_male.wav",
+          "audio_s": 20.35,
+          "generation_s": 102.62240299998666,
+          "sha256": "7c7d126e790a1e6a0f8eaa1e3454d4765b5973ac3c570607cdddf8fae89b8bd6"
+        },
+        {
+          "file": "03_numeri_male.wav",
+          "audio_s": 21.95,
+          "generation_s": 85.29097920001368,
+          "sha256": "11016964c55f7ff1bc7d62e0a466e82ec6023603874e3b38fed8c755c76159b7"
+        },
+        {
+          "file": "04_tecnico_male.wav",
+          "audio_s": 20.27,
+          "generation_s": 104.5224132000294,
+          "sha256": "fc8d32df971f65b7e87e6a94ffa30b8fee79fe42f400abdd1e70ad6f8f2abc76"
+        }
+      ]
+    },
+    "chatterbox": {
+      "model_load_s": 46.69960920000449,
+      "reference_prepare_s": {
+        "female": 18.972594300023047,
+        "male": 0.1787791999813635
+      },
+      "generation_s": 199.94842119998066,
+      "audio_s_without_inserted_gaps": 141.4,
+      "weighted_rtf": 1.4140623847240499,
+      "median_segment_rtf": 1.2204856418473962,
+      "cuda_peak_allocated_mib": 3629.16064453125,
+      "cuda_peak_reserved_mib": 3954.0,
+      "rss_peak_mib": 4968.16796875,
+      "whole_gpu_peak_used_mib_including_other_apps": 10314,
+      "torch": "2.6.0+cu124",
+      "cuda": "12.4",
+      "samples": [
+        {
+          "file": "01_racconto_female.wav",
+          "audio_s": 17.15,
+          "generation_s": 15.72325589999673,
+          "sha256": "a888afd7ee6672e348f97597dedd6cb1087eb68d19eb9675f992ad30864e1b8a"
+        },
+        {
+          "file": "02_dialogo_female.wav",
+          "audio_s": 16.95,
+          "generation_s": 14.313031900004717,
+          "sha256": "a53040fd76b02b013bde4f3d0e06c950f73a4b9826643c7e357bd60dcd8d3cc7"
+        },
+        {
+          "file": "03_numeri_female.wav",
+          "audio_s": 23.51,
+          "generation_s": 29.624086299998453,
+          "sha256": "51a308ca533de7d6e63606f222434c76f8f3faecee4b30891d19dff92ebbc48e"
+        },
+        {
+          "file": "04_tecnico_female.wav",
+          "audio_s": 17.55,
+          "generation_s": 17.088184599997476,
+          "sha256": "a5b8eb1138d97e4f2115d7601bcc9af052b15efe927ac79a3831d49a363b25d2"
+        },
+        {
+          "file": "01_racconto_male.wav",
+          "audio_s": 14.95,
+          "generation_s": 17.79864950000774,
+          "sha256": "da1d210f941078deb302b48b36eef17db398584d4439bd0ce73ade85bc374ed5"
+        },
+        {
+          "file": "02_dialogo_male.wav",
+          "audio_s": 14.91,
+          "generation_s": 35.08618019998539,
+          "sha256": "0bf41693073a7cee9fb1af7c20f9ae2184874ba2344c04e9736c00bf1254726e"
+        },
+        {
+          "file": "03_numeri_male.wav",
+          "audio_s": 22.55,
+          "generation_s": 40.86198039998999,
+          "sha256": "4da4b484db5592a821e538913349aec60c3668be038f748bc29ffbd1a95b9d31"
+        },
+        {
+          "file": "04_tecnico_male.wav",
+          "audio_s": 16.63,
+          "generation_s": 29.45305240000016,
+          "sha256": "f52571b050aac60ab21443d4a45395316db9b8213c530bddaf1d71ec7a224681"
+        }
+      ]
+    }
+  },
+  "listening_mapping": {
+    "A": "chatterbox",
+    "B": "qwen"
+  },
+  "archive_sha256": "3180fc284ff843c20fcd5757897c66a1c7c0359bd0af94c4fb9572f5580b7e1d",
+  "listening_target_lufs": -24,
+  "asr_check": {
+    "model": "faster-whisper-small",
+    "revision": "536b0662742c02347bc0e980a01041f333bce120",
+    "device": "cpu",
+    "files": 16,
+    "limitations": "Assisted content review only, no naturalness score; unresolved number/date pronunciation flags on both engines"
+  }
+}

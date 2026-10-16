@@ -56,7 +56,7 @@ Natura: 🤖 autonomo, 👤 umano, 🤝 collaborativo. Peso: 🟢 ordinario,
 
 ### Blocco 1.2 — Primo confronto di voci italiane 🤖 🟡
 
-- [ ] **F1B2** — Preparare ed eseguire un confronto riproducibile Qwen3-TTS / Chatterbox Multilingual V3.
+- [x] **F1B2** — Preparare ed eseguire un confronto riproducibile Qwen3-TTS / Chatterbox Multilingual V3. Completato il 2026-10-16.
   - **Ingresso**: uso selezione/lettura e priorita' alla qualita' confermati;
     rapporto del 16 ottobre e piano operativo aggiornato.
   - **Risultato**: corpus italiano, riferimento utilizzabile, versioni e
@@ -68,6 +68,27 @@ Natura: 🤖 autonomo, 👤 umano, 🤝 collaborativo. Peso: 🟢 ordinario,
     driver; nessuna integrazione UI o modifica del motore STT in questo blocco.
   - **Uscita**: dati e campioni pronti all'ascolto; il giudizio soggettivo
     resta a Mario. Runner non avviato da questa analisi.
+  - **Esito**: 16 WAV CUDA generati, due voci e quattro testi per motore;
+    copie A/B a -24 LUFS e ZIP locale verificati. Misure e istruzioni in
+    `docs/fondamenta/confronto-voci-2026-10-16.md` e `experiments/tts-comparison/`.
+    Fattore tempo reale 4,91 Qwen / 1,41 Chatterbox, in configurazioni Python
+    non ottimizzate e con altre applicazioni attive. Nessun voto acustico presunto.
+  - **Verifica**: audio, hash, formato, livello, testi e CUDA positivi; freeze
+    backend e hash configurazioni preservati; pacchetti dei due venv coerenti.
+    Controllo ASR su tutti i campioni segnala cifre/date da verificare in entrambi.
+    App, driver e codice della dettatura invariati; nessun installer costruito.
+
+### Blocco 1.3 — Ascoltare e scegliere la direzione della voce 🤝 🟡
+
+- [ ] **F1B3** — Raccogliere il giudizio di Mario sui campioni A/B.
+  - **Ingresso**: raccolta locale completata, rapporto e limiti dichiarati.
+  - **Risultato**: preferenza motivata su naturalezza, accento, ritmo e comodita'
+    d'ascolto; oppure nessun candidato soddisfacente, senza scelta forzata.
+  - **Verifica unica**: ascolto di testi uguali con riferimento uguale e risposta
+    di Mario registrata; distinguere preferenza di voce e problemi di pronuncia.
+  - **Primo passo**: racconto A/B, voce femminile e maschile; poi numeri/date.
+  - **Sequencing**: giudizio umano prima di adottare il motore. Runtime piu'
+    rapido e normalizzazione italiana da provare prima della lettura nell'app.
 
 ## Percorso successivo da dettagliare
 
@@ -84,5 +105,5 @@ Natura: 🤖 autonomo, 👤 umano, 🤝 collaborativo. Peso: 🟢 ordinario,
 
 Il mandato di implementazione e consegna e' dato. Queste direzioni richiedono
 la scomposizione in blocchi verificabili dopo le prove sui motori;
-oltre F1B2 non sono una sequenza gia' pronta per il runner.
+oltre il confronto e l'ascolto non sono una sequenza gia' pronta per il runner.
 Lo storico precedente e' in `docs/storico/ROADMAP-backend-robusto.md`.

@@ -4,6 +4,11 @@ Aggiornamento: **16 ottobre 2026**. Ricerca documentale e analisi del codice,
 con verifiche di base; nessun confronto acustico o nuovo motore installato.
 Integra e aggiorna la ricerca del 14 ottobre, preservandone i vincoli.
 
+Il confronto sperimentale successivo a questa analisi e' ora disponibile in
+[`confronto-voci-2026-10-16.md`](confronto-voci-2026-10-16.md): 16 campioni CUDA
+prodotti; le dichiarazioni di mancata prova qui sotto descrivono il momento
+dell'analisi documentale, non lo stato successivo dell'esperimento.
+
 ## 1. Obiettivo confermato da Mario
 
 Uso principale: ascoltare **il testo selezionato**, con la migliore qualita'

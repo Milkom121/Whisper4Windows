@@ -1,0 +1,34 @@
+[
+  {
+    "id": "01_racconto",
+    "title": "Racconto e naturalezza",
+    "segments": [
+      "Quando aprii la finestra, la città era ancora silenziosa. Dal forno all'angolo arrivava il profumo del pane appena sfornato.",
+      "Mi preparai un caffè e rimasi qualche istante a guardare la luce sulle facciate. Non avevo fretta: per una volta, la giornata poteva cominciare con calma."
+    ]
+  },
+  {
+    "id": "02_dialogo",
+    "title": "Dialogo, pause e intonazione",
+    "segments": [
+      "«Hai già finito?» chiese Giulia, sorpresa. «Quasi», rispose Marco. «Mi manca soltanto l'ultima pagina. Vuoi che te la legga?»",
+      "«Volentieri. Ma vai piano: voglio capire bene ogni passaggio.» Marco sorrise, fece una piccola pausa e ricominciò dall'inizio."
+    ]
+  },
+  {
+    "id": "03_numeri",
+    "title": "Numeri, date e abbreviazioni senza correzioni",
+    "segments": [
+      "L'appuntamento con la dott.ssa Bianchi è fissato per il 16/10/2026 alle 15:30. L'importo totale è di 1.234,56 euro, IVA inclusa.",
+      "Per informazioni consulta l'art. 12 del regolamento. La temperatura prevista è di 18 gradi, con un aumento del 3,5 per cento rispetto a ieri."
+    ]
+  },
+  {
+    "id": "04_tecnico",
+    "title": "Testo tecnico e parole inglesi",
+    "segments": [
+      "Il nuovo software elabora i dati direttamente sul computer. La scheda NVIDIA accelera il lavoro, mentre il sistema salva i risultati in una cartella locale.",
+      "Prima di avviare il download, controlla lo spazio disponibile. Se il collegamento si interrompe, puoi riprovare senza perdere le impostazioni."
+    ]
+  }
+]

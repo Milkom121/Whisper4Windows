@@ -1,0 +1,16 @@
+{
+  "qwen_source_revision": "022e286b98fbec7e1e916cb940cdf532cd9f488e",
+  "qwen_package": "qwen-tts==0.1.1",
+  "qwen_model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+  "qwen_model_revision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+  "qwen_tokenizer": "Qwen/Qwen3-TTS-Tokenizer-12Hz",
+  "qwen_tokenizer_revision": "7dd38ad4e9bad454aae9cd937d0cd577604fe229",
+  "chatterbox_source_revision": "5de7a54aa4e5e2baadb0182dde554908b48b85c2",
+  "chatterbox_model": "ResembleAI/chatterbox",
+  "chatterbox_model_revision": "5bb1f6ee58e50c3b8d408bc82a6d3740c2db6e18",
+  "chatterbox_variant": "v3",
+  "perth_revision": "ff1c8ac55a976971245cdd53c18d6131ca00d993",
+  "reference_dataset": "google/fleurs",
+  "reference_revision": "70bb2e84b976b7e960aa89f1c648e09c59f894dd",
+  "seed": 42
+}

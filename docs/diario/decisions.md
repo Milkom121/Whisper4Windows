@@ -34,3 +34,13 @@
   diventano requisiti per supposizione. La seconda domanda prevista e' eliminata.
 - Scelta motore rimandata a campioni italiani e misure. Conservare lo stack
   e separare i motori e' una raccomandazione tecnica ancora da validare.
+
+## 2026-10-16 — Confronto locale, scelta della voce ancora aperta
+
+- Mandato di Mario: generare campioni Qwen/Chatterbox sul portatile senza
+  compromettere la dettatura. Eseguito con ambienti e processi separati.
+- Stessi riferimenti italiani pubblici e stessi testi; nessuna registrazione
+  di Mario richiesta. Copie A/B a volume confrontabile, grezzi conservati.
+- Non adottare automaticamente Chatterbox per il tempo migliore: prima ascolto.
+- Cifre/date/abbreviazioni richiedono una prova di normalizzazione prima
+  dell'integrazione; il controllo ASR e' un segnale, non un voto acustico.

@@ -102,3 +102,16 @@ usare codice e configurazione effettivi; il riordino delle guide e' lavoro futur
 - Analisi e fonti aggiornate in `docs/fondamenta/obiettivi-e-fattibilita.md`;
   avvio audio falsamente riuscito riprodotto con acquisizione simulata.
 - Codice applicativo invariato. Nessun motore TTS, ascolto comparativo o installer provato.
+
+## Confronto vocale isolato (2026-10-16, successivo all'analisi)
+
+- Qwen3-TTS 1.7B Base e Chatterbox Multilingual V3 eseguiti in CUDA sulla RTX
+  4080 Laptop: 16 WAV e pacchetto locale d'ascolto, nessuna integrazione nell'app.
+- Ambienti in `experiments/tts-comparison/.venv-qwen` e `.venv-chatterbox`;
+  corpus, script, revisioni e lock file separati dal backend della dettatura.
+- Rapporto: `docs/fondamenta/confronto-voci-2026-10-16.md`; audio, pesi,
+  log e venv locali sono esclusi da Git. Ripetizione descritta nel README dell'esperimento.
+- Verificati formato/hash/volume dei 16 file e preservazione di freeze e
+  configurazioni della dettatura. Giudizio di ascolto ancora da Mario;
+  controllo ASR segnala cifre/date da rivedere in entrambi i motori.
+- Nessuna nuova prova di dettatura reale, UI, installer, 5080 o AMD.

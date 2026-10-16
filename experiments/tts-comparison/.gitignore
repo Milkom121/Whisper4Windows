@@ -1,0 +1,8 @@
+.venv-*/
+.sources/
+.cache/
+outputs/
+references/
+*.local.json
+*.log
+__pycache__/

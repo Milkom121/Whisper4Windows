@@ -99,3 +99,21 @@ e' la raccomandazione, non una riscrittura gia' autorizzata nei dettagli.
 - Certificazione AMD: test sul Minisforum reale prima di dichiararlo collaudato.
 - Firma digitale: rilevare il certificato disponibile prima del rilascio;
   nessun acquisto o servizio esterno implicito.
+
+## Confronto sperimentale del 16 ottobre — completato
+
+- Mandato diretto di Mario: confrontare Qwen e Chatterbox sul portatile,
+  preparare campioni italiani preservando la dettatura.
+- 16 WAV generati in CUDA: quattro testi originali, due riferimenti italiani
+  Google FLEURS CC-BY-4.0, due motori con stessi testi/riferimenti.
+- Qwen 1.7B Base BF16/SDPA, Torch 2.8.0 CUDA 12.8; Chatterbox Multilingual V3,
+  Torch 2.6.0 CUDA 12.4. Venv distinti; pacchetti fissati, checkpoint verificati.
+- Fattore tempo reale complessivo: Qwen 4,91, Chatterbox 1,41. Altre app attive,
+  nessuna ottimizzazione di serving e nessun tempo di riproduzione streaming.
+- Copie A/B a circa -24 LUFS e ZIP 10,4 MiB pronti; ASR su 16 campioni segnala
+  possibili problemi di cifre/date in entrambi. Nessun voto di naturalezza automatico.
+- Freeze del venv della dettatura e hash requirements/Cargo invariati;
+  nessuna modifica applicativa, driver o installer. Audio e ambienti solo locali.
+- Rapporto: `docs/fondamenta/confronto-voci-2026-10-16.md`.
+- Prossimo giudizio richiesto: preferenza di Mario dopo ascolto; seconda
+  domanda strategica precedente non va riproposta.

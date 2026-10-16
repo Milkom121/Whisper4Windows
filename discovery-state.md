@@ -1,8 +1,8 @@
 # Discovery State — Whisper4Windows
 
-## Fase corrente: analisi aggiornata, uso e priorita' chiariti
+## Fase corrente: campioni italiani prodotti, attesa ascolto di Mario
 
-Ricerca documentale aggiornata il 16 ottobre 2026; confronto sperimentale da fare.
+Ricerca e confronto sperimentale svolti il 16 ottobre 2026. Nessun motore scelto.
 Skill: `.claude/skills/discovery/SKILL.md`.
 
 ## Decisioni prese
@@ -18,7 +18,9 @@ Skill: `.claude/skills/discovery/SKILL.md`.
 
 - Scegliere voce e runtime attraverso campioni italiani comparabili e misure.
 - Fissare soglie tecniche prima delle prove; non inventare un'attesa accettata da Mario.
-- Nessun modello scelto/provato; Minisforum non verificato in questa sessione.
+- Qwen 1.7B Base e Chatterbox V3 provati in CUDA sul portatile, 16 file pronti.
+  Preferenza acustica da acquisire; cifre/date da controllare all'ascolto.
+- Minisforum e 5080 non verificati; testi lunghi e integrazione da collaudare.
 
 ## File prodotti
 
@@ -27,10 +29,13 @@ Skill: `.claude/skills/discovery/SKILL.md`.
   differenze 12/16 GB, proposta di integrazione e piano della prova.
 - `docs/fondamenta/piano-operativo-voce-hardware.md`: percorso/gate, bozza 0.2.
 - Roadmap, consegne, decisioni e mandato nella ricerca esistente aggiornati.
+- `docs/fondamenta/confronto-voci-2026-10-16.md`: risultati e limiti.
+- `experiments/tts-comparison/`: corpus, script e versioni ripetibili;
+  WAV/ZIP, modelli e venv rimangono locali e ignorati da Git.
 
 ## Prossimo passo
 
-Preparare il primo confronto italiano isolato (Qwen3-TTS e Chatterbox V3),
-con riferimento vocale e versioni tracciabili. Estendere poi ai candidati di
-qualita' se necessario e a una baseline leggera. Nessun modello scelto a priori.
-La nuova funzione non e' ancora disponibile. Runner e driver non avviati/modificati.
+Mario ascolta A/B, prima racconto nelle due voci, poi cifre/date. Registrare
+preferenza o insoddisfazione senza promuovere automaticamente il piu' rapido.
+In seguito provare runtime e normalizzazione; altri candidati se necessari.
+La lettura nell'app non e' ancora disponibile. Driver e dettatura preservati.

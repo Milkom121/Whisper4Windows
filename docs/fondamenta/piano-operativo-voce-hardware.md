@@ -1,21 +1,25 @@
 # Piano operativo — voce italiana e hardware automatico
 
-Bozza 0.1 del 2026-10-14, da finalizzare dopo le risposte strategiche.
+Bozza 0.2 del 2026-10-16, aggiornata dopo la risposta strategica di Mario.
 La roadmap e' l'unica fonte dello stato dei blocchi. Qui si descrivono percorso e
 gate: non sono certificazioni di funzioni o test gia' eseguiti.
 
 ## 1. Decisioni strategiche
 
-Discovery: uso principale e compromesso fra prontezza e qualita'. Non chiedere
-motori, librerie, scorciatoie o layout. Tradurre le risposte in un caso concreto
-e criteri di accettazione. Uscita: visione confermata, dettagli delegati.
+Uso principale chiarito: leggere il testo selezionato con la qualita' vocale
+migliore possibile; comodita' d'uso gradite. La risposta chiarisce anche il
+compromesso qualitativo, quindi non serve la seconda domanda prevista.
+Caso concreto e criteri di confronto nel rapporto `obiettivi-e-fattibilita.md`.
+Tempi accettabili numerici non ancora concordati; non inventarli come decisioni.
 
 ## 2. Prove isolate dei motori
 
 - Ambiente TTS separato, senza alterare il venv della dettatura.
 - Corpus italiano: cifre, date, abbreviazioni, nomi, frasi e brano lungo.
-- Pochi candidati pertinenti: Qwen3-TTS principale, soluzione leggera e/o
-  Chatterbox per confronto se necessario. Nessun vincitore presunto.
+- Primo confronto: Qwen3-TTS 1.7B e Chatterbox Multilingual V3. Poi VoxCPM2
+  e CosyVoice3 per cercare un vantaggio italiano; MOSS v1.5 solo con pesi/runtime
+  riproducibili compatibili con la memoria. Una baseline leggera fra Pocket TTS,
+  MOSS Nano ONNX e Kokoro. La priorita' e' la voce, non il numero di motori.
 - Misurare primo audio, velocita', RAM/VRAM, correttezza e stabilita'; distinguere
   avvio a freddo, a caldo e alternanza con la dettatura.
 - AMD: provare runtime e macchina, poi conservare CTranslate2 o introdurre
@@ -33,6 +37,10 @@ Nessuna modifica automatica di driver o PATH di sistema.
   valutare processi separati, senza trattarli come architettura gia' implementata.
 - Coordinare ascolto/registrazione: non perdere dettatura o impostazioni e non
   catturare involontariamente la voce sintetica nel microfono.
+- Acquisire la selezione prima di spostare il focus; provare controlli Windows
+  compatibili e fallback appunti senza leggere testo vecchio o perdere formati.
+- Correggere il difetto riprodotto di /start che dichiara registrazione avviata
+  anche quando AudioCapture.start_recording() fallisce.
 - Rilevare l'interfaccia attuale prima di estenderla; conservare stack e stile.
 - Download con progresso, spazio richiesto, annullamento e integrita'; offline
   dopo preparazione. Proteggere API locale e WebView prima del rilascio.

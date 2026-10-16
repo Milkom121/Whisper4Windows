@@ -23,3 +23,14 @@
 - Raccolta iniziale e piano provvisorio salvati. Uso principale della voce
   ancora senza risposta; nessun motore o clonazione approvati per supposizione.
 - Nessun consenso implicito a cloud, driver, release pubbliche o merge main.
+
+## 2026-10-16 — Lettura della selezione e qualita' della voce
+
+- Decisione di Mario: uso prevalentemente personale, ascoltare il testo che
+  seleziona con la qualita' e le voci migliori possibili; accessori UX utili graditi.
+- La risposta chiude anche il dubbio prontezza/naturalezza: priorita' alla
+  qualita'; nessuna soglia numerica d'attesa approvata.
+- Produzione audio, esportazione e clonazione come funzione per l'utente non
+  diventano requisiti per supposizione. La seconda domanda prevista e' eliminata.
+- Scelta motore rimandata a campioni italiani e misure. Conservare lo stack
+  e separare i motori e' una raccomandazione tecnica ancora da validare.

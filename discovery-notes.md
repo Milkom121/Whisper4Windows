@@ -1,12 +1,13 @@
 # Discovery — evoluzione voce e hardware
 
-Versione 0.1, 2026-10-14. Raccolta iniziale, non specifica approvata.
+Versione 0.2, 2026-10-16. Uso principale chiarito; motore e architettura da validare.
 
 ## Obiettivo e mandato
 
 Un'unica app Windows locale per dettare e ascoltare testi in italiano, con scelta
 automatica NVIDIA, AMD o CPU. Conservare la dettatura esistente. Macchine obiettivo:
-RTX 4080 Laptop e Minisforum MS-S1 MAX.
+RTX 4080 Laptop e Minisforum MS-S1 MAX; la ricerca del 16 ottobre considera
+anche la RTX 5080 come profilo NVIDIA, senza presumere che sia disponibile qui.
 
 Mario autorizza raccolta informazioni, piano, implementazione, test ed eseguibile
 installabile. Decide solo questioni strategiche tramite Discovery; l'agente
@@ -47,15 +48,36 @@ Base completa: `docs/fondamenta/obiettivi-e-fattibilita.md`.
 - [whisper.cpp](https://github.com/ggml-org/whisper.cpp#vulkan-gpu-support):
   alternativa STT Vulkan, da confrontare se necessaria.
 
-## Gap strategici — risponde Mario
+## Risposta strategica di Mario — 2026-10-16
 
-1. Prima versione: lettore quotidiano oppure anche produzione di contenuti con
-   identita' vocali personalizzate/clonate? Raccomandazione: lettore quotidiano
-   come obiettivo iniziale, senza introdurre uno studio vocale per supposizione.
-2. Priorita' fra avvio pronto e massima naturalezza. Formulare dopo la risposta 1;
-   eliminare la domanda se la risposta precedente chiarisce gia' il compromesso.
+- Uso prevalente personale: ascoltare il testo selezionato con la qualita' e
+  le voci migliori possibili. Funzioni accessorie utili all'esperienza gradite.
+- Il caso prioritario e' quindi selezione → lettura, con naturalezza prima
+  della massima velocita'. Nessun tempo d'attesa numerico ancora concordato.
+- La risposta chiarisce entrambe le domande previste: non riproporre la seconda.
+- Produzione di contenuti, esportazione, cronologia e clonazione come funzione
+  utente non sono requisiti acquisiti. Una voce preparata tramite riferimento
+  e' una possibile scelta tecnica, non richiede per forza la voce di Mario.
 
-Nessuna risposta nuova ricevuta. Raccomandazioni non equivalgono a decisioni.
+## Analisi aggiornata del 16 ottobre
+
+Rapporto completo con fonti: `docs/fondamenta/obiettivi-e-fattibilita.md`.
+Conservare Tauri/faster-whisper e ristrutturare motori, errori e distribuzione
+e' la raccomandazione, non una riscrittura gia' autorizzata nei dettagli.
+
+- Confronto qualita': Qwen3-TTS, Chatterbox Multilingual V3, VoxCPM2,
+  CosyVoice3; MOSS v1.5 con runtime/pesi adatti alla memoria se riproducibili.
+- Confronto leggero: Pocket TTS ora italiano, MOSS Nano ONNX e Kokoro.
+- Verificate distinzioni fra codice/pesi: OmniVoice non commerciale nei pesi,
+  Pocket CC-BY-4.0 nei pesi; Fish S2/Drama non sono la baseline 12/16 GB.
+- Qwen anche via llama.cpp e runtime comunitario faster-qwen3-tts; non
+  presumere parita' di voce, streaming o prestazioni fra implementazioni.
+- Sintassi Python (6 file) e cargo check offline positivi; warning Rust noto.
+- Riprodotto in memoria: avvio audio fallito ma /start risponde started.
+  Prova simulata, nessun microfono reale avviato, difetto non corretto qui.
+- RTX4080Laptop confermata: 12282 MiB totali; circa 5923 MiB liberi al rilievo.
+- Video YouTube trovati tramite titoli/descrizioni; non visionati/ascoltati.
+- Nessun nuovo motore, benchmark vocale, build o modifica applicativa.
 
 ## Gap tecnici — risolve l'agente
 
@@ -69,7 +91,9 @@ Nessuna risposta nuova ricevuta. Raccomandazioni non equivalgono a decisioni.
 
 ## Non ancora specificato: responsabile e momento
 
-- Uso e compromesso voce: Mario, intervista corrente.
+- Uso e priorita' qualitativa: chiariti da Mario il 16 ottobre.
+- Soglie pratiche di attesa/stabilita': agente prima della prova, poi valutare
+  con Mario se il compromesso cambia sensibilmente l'esperienza.
 - Motore: agente, dopo confronto misurato coerente con le risposte.
 - Giudizio soggettivo: Mario su pochi campioni, se discriminante.
 - Certificazione AMD: test sul Minisforum reale prima di dichiararlo collaudato.

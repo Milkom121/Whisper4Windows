@@ -6,7 +6,7 @@
 - Repository: https://github.com/Milkom121/Whisper4Windows
 - Upstream: https://github.com/BaderJabri/Whisper4Windows
 - Stato: applicazione esistente; nuova evoluzione in definizione.
-- Ultima sessione e aggiornamento: 2026-10-14.
+- Ultima sessione e aggiornamento: 2026-10-16 (analisi e ricerca, app invariata).
 - Metodo: copia del repository ufficiale; provenienza ed eccezioni in
   `docs/fondamenta/metodo-villa-origine.md`.
 
@@ -80,7 +80,8 @@ usare codice e configurazione effettivi; il riordino delle guide e' lavoro futur
 - Repository pubblico: non pubblicare `.claude/precedenti/`, credenziali,
   impostazioni locali del runner o log completi.
 - Il runner e' importato; il suo avvio segue un mandato distinto. Il prossimo
-  confronto e' collaborativo, prima dei blocchi automatici.
+  confronto riguarda ora campioni italiani: Mario ha chiarito l'uso personale
+  della lettura della selezione e la priorita' alla qualita'.
 - `--help`, controlli sintattici e lettura dello stato verificano l'integrazione,
   non equivalgono a una corsa reale dell'agente automatico.
 
@@ -94,3 +95,10 @@ usare codice e configurazione effettivi; il riordino delle guide e' lavoro futur
 - Sintassi shell e aiuto runner: positivi. Lo strumento di stato legge F1B1
   come confronto collaborativo e prevede zero blocchi autonomi prima di Mario.
 - Applicazione e nuovo installer non collaudati in questa adozione.
+
+## Verifiche dell'analisi (2026-10-16)
+
+- Sintassi Python (6 file) e `cargo check --offline` positivi, stesso warning Rust.
+- Analisi e fonti aggiornate in `docs/fondamenta/obiettivi-e-fattibilita.md`;
+  avvio audio falsamente riuscito riprodotto con acquisizione simulata.
+- Codice applicativo invariato. Nessun motore TTS, ascolto comparativo o installer provato.
